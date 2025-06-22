@@ -1,5 +1,4 @@
 // app/components/Footer.tsx
-import Link from 'next/link';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

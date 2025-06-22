@@ -1,14 +1,33 @@
 // app/components/Hero.tsx
-'use client'; // Vanta.js hanya berjalan di sisi klien
+'use client'; 
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-let NET: any = null; // Inisialisasi di luar komponen untuk efek NET
+interface VantaEffect {
+  destroy: () => void;
+}
+
+interface VantaOptions {
+  el: HTMLElement | null;
+  mouseControls: boolean;
+  touchControls: boolean;
+  gyroControls: boolean;
+  minHeight: number;
+  minWidth: number;
+  scale: number;
+  scaleMobile: number;
+  color: number;
+  backgroundColor: number;
+  maxDistance: number;
+}
+type VantaConstructor = (options: VantaOptions) => VantaEffect;
+
+let NET: VantaConstructor | null = null;
 
 const Hero = () => {
   const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState<any>(null);
+  const [vantaEffect, setVantaEffect] = useState<VantaEffect | null>(null);
 
   // Muat Vanta secara dinamis di sisi klien
   useEffect(() => {
@@ -18,7 +37,7 @@ const Hero = () => {
         const vanta = await import('vanta/dist/vanta.net.min'); // Menggunakan efek NET
         NET = vanta.default;
 
-        if (vantaRef.current && !vantaEffect) {
+        if (vantaRef.current && !vantaEffect && NET) {
           setVantaEffect(
             NET({
               el: vantaRef.current,
