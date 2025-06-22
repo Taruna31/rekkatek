@@ -57,7 +57,8 @@ const InteractiveShowcase = () => {
         <h2 className="text-4xl font-bold text-white mb-2">Our Service</h2>
         <br />
       </div>
-      <div className="w-full max-w-7xl mx-auto h-[60vh] min-h-[500px] flex gap-2 p-2 bg-gray-800 rounded-2xl">
+      {/* TAMPILAN DESKTOP */}
+      <div className="hidden lg:flex w-full max-w-7xl mx-auto h-[60vh] min-h-[500px] gap-2 p-2 bg-gray-800 rounded-2xl">
         {panelsData.map((panel, index) => (
           <motion.div
             key={panel.id}
@@ -112,6 +113,28 @@ const InteractiveShowcase = () => {
                </AnimatePresence>
             </div>
           </motion.div>
+        ))}
+      </div>
+
+      {/* TAMPILAN MOBILE */}
+      <div className="block lg:hidden w-full max-w-md mx-auto px-4">
+        {panelsData.map((panel) => (
+            <div key={`mobile-${panel.id}`} className="bg-gray-800 rounded-2xl p-6 mb-6">
+                <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-2 rounded-md bg-gradient-to-br ${panel.bgColor}`}>
+                        <panel.icon size={24} className="text-white"/>
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{panel.title}</h3>
+                </div>
+                <ul className="space-y-2 mb-4 list-disc list-inside text-gray-300 pl-2">
+                    {panel.content.map((item, i) => (
+                        <li key={`content-${i}`}>{item}</li>
+                    ))}
+                </ul>
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                    <Image src={panel.mainImage} layout="fill" objectFit="cover" alt={panel.title} />
+                </div>
+            </div>
         ))}
       </div>
     </section>

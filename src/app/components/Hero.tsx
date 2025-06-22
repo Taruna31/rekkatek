@@ -54,7 +54,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-extrabold text-white mb-4"
         >
-          The pioneer of hedge fund.
+          Empowering Innovation with Intelligent Solutions
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 50 }}
@@ -62,8 +62,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
         >
-          "Market is not driven by data but by me"
-          - Abdul Simbolon Asegav
+          AI, Embedded, IoT: Your Pathway to Digital Transformation.
         </motion.p>
       </div>
     </section>
